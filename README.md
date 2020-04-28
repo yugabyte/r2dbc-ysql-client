@@ -3,14 +3,16 @@
 
 This app is a fully reactive Spring Boot implementation backed by YugabyteDB SQL API  (YSQL). [R2DBC](r2dbc.io) provides support for reactive streams, a non-blocking way of accessing data from relational databases, alternative to using blocking JDBC drivers. [R2DBC Specification](https://r2dbc.io/spec/0.8.0.M8/spec/html/#introduction.r2dbc-spi) provides a list of top level APIs for driver vendors to implement, we are using R2DBC driver implementation of PostgreSQL for accessing relational data from YugabyteDB. 
 
+YugabyteDB YSQL API provides PostgreSQL compatible Distributed SQL APIs for microservices applications. Read more about YugabyteDB Architecture [here](https://docs.yugabyte.com/latest/architecture/layered-architecture/)
+
 `r2dbc-ycql-client` app uses the following components:
 
 - Spring WebFlux
 - Spring Data R2DBC
 - PostgreSQL R2DBC Driver
-- Three Node YugabyteDB cluster
+- Three Node YugabyteDB cluster (v2.1.4.0)
 
-App is a REST based application which exposes REST APIs for CRUD operations on a Product and Inventory domain. The sample application will be implementing below table schema.
+App is a REST based application which exposes Reactive APIs for CRUD operations on Products and Inventory table . The sample application will be implementing below table schema.
 
 ![Table Schema](table_diagram.png)
 
@@ -21,7 +23,6 @@ App is a REST based application which exposes REST APIs for CRUD operations on a
 ## Step 1: Start the YugabyteDB cluster
 
 You can do so using following command from YugabyteDB installation directory,
-
 
 ```
 $ ./bin/yb-ctl destroy && ./bin/yb-ctl --rf 3 create --tserver_flags="cql_nodelist_refresh_interval_secs=10" --master_flags="tserver_unresponsive_timeout_ms=10000"
