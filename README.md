@@ -3,7 +3,7 @@
 
 This app is a fully reactive Spring Boot implementation backed by YugabyteDB SQL API  (YSQL). [R2DBC](r2dbc.io) provides support for reactive streams, a non-blocking way of accessing data from relational databases, alternative to using blocking JDBC drivers. [R2DBC Specification](https://r2dbc.io/spec/0.8.0.M8/spec/html/#introduction.r2dbc-spi) provides a list of top level APIs for driver vendors to implement, we are using R2DBC driver implementation of PostgreSQL for accessing relational data from YugabyteDB. 
 
-YugabyteDB YSQL API provides PostgreSQL compatible Distributed SQL APIs for microservices applications. Read more about YugabyteDB Query Layer [here](https://docs.yugabyte.com/latest/architecture/layered-architecture/)
+YugabyteDB YSQL API provides PostgreSQL compatible Distributed SQL API for microservices applications. Read more about YugabyteDB Query Layer [here](https://docs.yugabyte.com/latest/architecture/layered-architecture/)
 
 `r2dbc-ycql-client` app uses the following components:
 
