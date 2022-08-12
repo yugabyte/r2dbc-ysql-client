@@ -1,6 +1,6 @@
 package com.yugabyte.ysql.sample.r2dbcysqlclient.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yugabyte.ysql.sample.r2dbcysqlclient.service.OrderDao.ProductAndOrder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,33 +15,40 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class ProductController {
-	
-	@Autowired
-	private ProductService productService;
 
-	@GetMapping("/products")
+	private final ProductService productService;
+
+  public ProductController(ProductService productService) {
+    this.productService = productService;
+  }
+
+  @GetMapping("/products")
 	public Flux<Product> getProducts() {
 		return productService.getProducts();
 	}
 
-	@PostMapping("/products/save")
-	public Mono<Product> createProductUsingSaveAPI(@RequestBody Product product) {
+	@PostMapping("/products/add")
+	public Mono<Product> add(@RequestBody Product product) {
 		return productService.createProduct(product);
 	}
 
 	@GetMapping("/products/{productId}")
-	public Mono<Product> getProduct(@PathVariable Integer productId, @RequestBody Product productRequest) {
+	public Mono<Product> get(@PathVariable Integer productId) {
 		return productService.getProduct(productId);
 	}
 
 	@GetMapping("/products/delete/{productId}")
-	public Mono<Void> deleteProduct(@PathVariable Integer productId) {
+	public Mono<Void> delete(@PathVariable Integer productId) {
 		return productService.deleteProduct(productId);
 	}
-	
-	@GetMapping("/products/join/{productId}")
-	public Mono<?> getProductDetailWithInventoryInfo(@PathVariable Integer productId) {
+
+	@GetMapping("/products/with-inventory/{productId}")
+	public Mono<?> getWithInventory(@PathVariable Integer productId) {
 		return productService.retrieveProductWithInventoryInfo(productId);
 	}
 
+  @GetMapping("/products/with-orders/{productId}")
+  public Mono<ProductAndOrder> getWithOrders(@PathVariable Integer productId){
+    return productService.getProductWithOrders(productId);
+  }
 }
