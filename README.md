@@ -16,6 +16,7 @@ App is a REST based application which exposes Reactive APIs for CRUD operations 
 
 ![Table Schema](table_diagram.png)
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'background': '#000000','primaryColor': '#ed774f'}}}%%
 erDiagram
   PRODUCTS ||--o{ ORDERS : product_id
   PRODUCTS ||--|o INVENTORY : product_id
