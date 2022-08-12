@@ -8,8 +8,14 @@ import com.yugabyte.ysql.sample.r2dbcysqlclient.domain.Product;
 import reactor.core.publisher.Flux;
 
 public interface ProductRepository extends ReactiveCrudRepository<Product, Integer> {
-	
-	@Query("SELECT * FROM customer WHERE last_name = :productName")
-	Flux<Product> findByProductName(String productName);
+
+  // Example of using custom query
+	@Query("SELECT * FROM products WHERE LOWER(product_name) like LOWER(:productName)")
+	Flux<Product> findProducts(String productName);
+
+  // Example of using Spring Data native query generator
+  Flux<Product> findByProductNameContainingIgnoreCase(String productName);
+
+  Flux<Product> findByPriceIsGreaterThan(double amount);
 
 }

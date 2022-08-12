@@ -1,6 +1,5 @@
-\c yugabyte
 CREATE TABLE inventory (
-	
+
 	inventory_id SERIAL NOT NULL ,
 	product_id INT NOT NULL ,
 	inventory_count INT ,

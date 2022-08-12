@@ -1,52 +1,24 @@
 package com.yugabyte.ysql.sample.r2dbcysqlclient.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table("products")
 public class Product {
 
-	@Id
-	@Column(value = "product_id")
-    private Integer productId;
-    
-	@Column(value = "product_name")
-    private String productName;
-    
-    private String description;
-    
-    private double price;
+  @Id
+  private Integer productId;
 
-    public Integer getProductId() {
-        return productId;
-    }
+  private String productName;
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+  private String description;
 
-    public String getProductName() {
-        return productName;
-    }
+  private double price;
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public double getPrice() {
-    	return price;
-    }
-    
-    public void setPrice(double price) {
-    	this.price = price;
-    }
 }
